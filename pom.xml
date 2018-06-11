@@ -7,6 +7,9 @@
   <version>1.0-SNAPSHOT</version>
   <name>webappRunnerSample Maven Webapp</name>
   <url>http://maven.apache.org</url>
+   <properties>
+  <sonar.host.url>http://localhost:9000</sonar.host.url>
+  </properties>
 
   <dependencies>
     <dependency>
@@ -41,6 +44,11 @@
             </executions>
         </plugin>
 		<plugin>
+   <groupId>org.codehaus.mojo</groupId>
+   <artifactId>sonar-maven-plugin</artifactId>
+   <version>2.3</version>
+  </plugin>
+		<plugin>
                     <groupId>org.apache.tomcat.maven</groupId>
                     <artifactId>tomcat7-maven-plugin</artifactId>
                     <version>2.2</version>
@@ -50,11 +58,21 @@
                         <warFile>target/webappRunnerSample.war</warFile>
                         <path>/MyWebA</path>
                         <contextReloadable>true</contextReloadable>
-						<username>tomcat</username>
-						<password>tomcat</password>
+						<username>admin</username>
+						<password>admin</password>
 						<update>true</update>
                     </configuration>
                 </plugin>
     </plugins>
   </build>
+  <reporting>
+    <plugins>
+      <plugin>
+        <!-- JUnit code coverage. -->
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>2.6</version>
+      </plugin>
+    </plugins>
+  </reporting>
 </project>
